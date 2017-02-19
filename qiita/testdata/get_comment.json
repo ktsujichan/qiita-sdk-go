@@ -1,0 +1,24 @@
+{
+  "body": "# Example",
+  "created_at": "2000-01-01T00:00:00+00:00",
+  "id": "3391f50c35f953abfc4f",
+  "rendered_body": "<h1>Example</h1>",
+  "updated_at": "2000-01-01T00:00:00+00:00",
+  "user": {
+    "description": "Hello, world.",
+    "facebook_id": "yaotti",
+    "followees_count": 100,
+    "followers_count": 200,
+    "github_login_name": "yaotti",
+    "id": "yaotti",
+    "items_count": 300,
+    "linkedin_id": "yaotti",
+    "location": "Tokyo, Japan",
+    "name": "Hiroshige Umino",
+    "organization": "Increments Inc",
+    "permanent_id": 1,
+    "profile_image_url": "https://si0.twimg.com/profile_images/2309761038/1ijg13pfs0dg84sk2y0h_normal.jpeg",
+    "twitter_screen_name": "yaotti",
+    "website_url": "http://yaotti.hatenablog.com"
+  }
+}

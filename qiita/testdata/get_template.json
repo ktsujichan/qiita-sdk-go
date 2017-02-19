@@ -1,0 +1,24 @@
+{
+  "body": "Weekly MTG on %{Year}/%{month}/%{day}",
+  "id": 1,
+  "name": "Weekly MTG",
+  "expanded_body": "Weekly MTG on 2000/01/01",
+  "expanded_tags": [
+    {
+      "name": "MTG/2000/01/01",
+      "versions": [
+        "0.0.1"
+      ]
+    }
+  ],
+  "expanded_title": "Weekly MTG on 2015/06/03",
+  "tags": [
+    {
+      "name": "MTG/%{Year}/%{month}/%{day}",
+      "versions": [
+        "0.0.1"
+      ]
+    }
+  ],
+  "title": "Weekly MTG on %{Year}/%{month}/%{day}"
+}
