@@ -1,6 +1,7 @@
 # Qiita SDK for Go
 <span style="display: inline-block;">
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.org/ktsujichan/qiita-sdk-go.svg?branch=master)](https://travis-ci.org/ktsujichan/qiita-sdk-go)
 </span>
 
 Qiita API v2 client library written in Golang.
