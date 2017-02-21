@@ -64,7 +64,7 @@ func (c *Client) do(ctx context.Context, req *http.Request) (*http.Response, err
 }
 
 func (c *Client) get(ctx context.Context, endpoint string, rawQuery *string) (*http.Response, error) {
-	req, err := http.NewRequest("GET", c.url(endpoint), nil)
+	req, err := http.NewRequest(http.MethodGet, c.url(endpoint), nil)
 	if rawQuery != nil {
 		req.URL.RawQuery = *rawQuery
 	}
@@ -75,7 +75,7 @@ func (c *Client) get(ctx context.Context, endpoint string, rawQuery *string) (*h
 }
 
 func (client *Client) post(ctx context.Context, endpoint string, body io.Reader) (*http.Response, error) {
-	req, err := http.NewRequest("POST", client.url(endpoint), body)
+	req, err := http.NewRequest(http.MethodPost, client.url(endpoint), body)
 	if err != nil {
 		return nil, err
 	}
@@ -84,7 +84,7 @@ func (client *Client) post(ctx context.Context, endpoint string, body io.Reader)
 }
 
 func (client *Client) patch(ctx context.Context, endpoint string, body io.Reader) (*http.Response, error) {
-	req, err := http.NewRequest("PATCH", client.url(endpoint), body)
+	req, err := http.NewRequest(http.MethodPatch, client.url(endpoint), body)
 	if err != nil {
 		return nil, err
 	}
@@ -93,7 +93,7 @@ func (client *Client) patch(ctx context.Context, endpoint string, body io.Reader
 }
 
 func (client *Client) put(ctx context.Context, endpoint string, body io.Reader) (*http.Response, error) {
-	req, err := http.NewRequest("PUT", client.url(endpoint), body)
+	req, err := http.NewRequest(http.MethodPut, client.url(endpoint), body)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +102,7 @@ func (client *Client) put(ctx context.Context, endpoint string, body io.Reader) 
 }
 
 func (c *Client) delete(ctx context.Context, endpoint string) (*http.Response, error) {
-	req, err := http.NewRequest("DELETE", c.url(endpoint), nil)
+	req, err := http.NewRequest(http.MethodDelete, c.url(endpoint), nil)
 	if err != nil {
 		return nil, err
 	}
