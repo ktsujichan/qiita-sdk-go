@@ -1,8 +1,10 @@
 # Qiita SDK for Go
 <span style="display: inline-block;">
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/ktsujichan/qiita-sdk-go.svg?branch=master)](https://travis-ci.org/ktsujichan/qiita-sdk-go)
 [![Code Climate](https://codeclimate.com/github/ktsujichan/qiita-sdk-go/badges/gpa.svg)](https://codeclimate.com/github/ktsujichan/qiita-sdk-go)
+[![Issue Count](https://codeclimate.com/github/ktsujichan/qiita-sdk-go/badges/issue_count.svg)](https://codeclimate.com/github/ktsujichan/qiita-sdk-go)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/ktsujichan/qiita-sdk-go/issues)
 </span>
 
 Qiita API v2 client library written in Golang.
