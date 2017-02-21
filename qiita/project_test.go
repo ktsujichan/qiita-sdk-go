@@ -15,7 +15,7 @@ func TestGetProjects(t *testing.T) {
 			http.ServeFile(w, r, "testdata/get_projects.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListProjects(ctx, 1, 1)
 		if err != nil {
 			t.Fatal(err)
@@ -29,7 +29,7 @@ func TestGetProjects(t *testing.T) {
 			http.ServeFile(w, r, "testdata/get_projects.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListProjects(ctx, 1, 1)
 		if err == nil {
 			t.Fail()
@@ -45,7 +45,7 @@ func TestCreateProject(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.CreateProject(ctx, Project{})
 		if err != nil {
 			t.Fatal(err)
@@ -59,7 +59,7 @@ func TestCreateProject(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.CreateProject(ctx, Project{})
 		if err == nil {
 			t.Fail()
@@ -75,7 +75,7 @@ func TestDeleteProject(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.DeleteProject(ctx, 1)
 		if err != nil {
 			t.Fatal(err)
@@ -89,7 +89,7 @@ func TestDeleteProject(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.DeleteProject(ctx, 1)
 		if err == nil {
 			t.Fail()
@@ -105,7 +105,7 @@ func TestGetProject(t *testing.T) {
 			http.ServeFile(w, r, "testdata/get_project.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.GetProject(ctx, "", 1, 1)
 		if err != nil {
 			t.Fatal(err)
@@ -119,7 +119,7 @@ func TestGetProject(t *testing.T) {
 			http.ServeFile(w, r, "testdata/get_project.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.GetProject(ctx, "", 1, 1)
 		if err == nil {
 			t.Fail()
@@ -135,7 +135,7 @@ func TestUpdateProject(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.UpdateProject(ctx, Project{})
 		if err != nil {
 			t.Fatal(err)
@@ -149,7 +149,7 @@ func TestUpdateProject(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.UpdateProject(ctx, Project{})
 		if err == nil {
 			t.Fail()

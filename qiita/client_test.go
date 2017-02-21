@@ -35,7 +35,7 @@ func TestNewClient(t *testing.T) {
 func TestNewRequest(t *testing.T) {
 	server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {}))
 	c, _ := mockClient(server)
-	ctx, _ := context.WithCancel(context.Background())
+	ctx := context.TODO()
 	_, err := c.newRequest(ctx, "", "", nil)
 	if err != nil {
 		t.Fatal(err)

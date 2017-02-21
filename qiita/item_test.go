@@ -15,7 +15,7 @@ func TestListAuthenticatedUserItems(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_authenticated_user_items.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListAuthenticatedUserItems(ctx, 1, 1)
 		if err != nil {
 			t.Fatal(err)
@@ -29,7 +29,7 @@ func TestListAuthenticatedUserItems(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_authenticated_user_items.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListAuthenticatedUserItems(ctx, 1, 1)
 		if err == nil {
 			t.Fail()
@@ -45,7 +45,7 @@ func TestListItems(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_items.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListItems(ctx, 1, 1, "")
 		if err != nil {
 			t.Fatal(err)
@@ -59,7 +59,7 @@ func TestListItems(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_items.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListItems(ctx, 1, 1, "")
 		if err == nil {
 			t.Fail()
@@ -75,7 +75,7 @@ func TestCreateItem(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.CreateItem(ctx, Item{})
 		if err != nil {
 			t.Fatal(err)
@@ -89,7 +89,7 @@ func TestCreateItem(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.CreateItem(ctx, Item{})
 		if err == nil {
 			t.Fail()
@@ -105,7 +105,7 @@ func TestDeleteItem(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.DeleteItem(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -119,7 +119,7 @@ func TestDeleteItem(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.DeleteItem(ctx, "")
 		if err == nil {
 			t.Fail()
@@ -135,7 +135,7 @@ func TestGetItem(t *testing.T) {
 			http.ServeFile(w, r, "testdata/get_item.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.GetItem(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -149,7 +149,7 @@ func TestGetItem(t *testing.T) {
 			http.ServeFile(w, r, "testdata/get_item.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.GetItem(ctx, "")
 		if err == nil {
 			t.Fail()
@@ -165,7 +165,7 @@ func TestUpdateItem(t *testing.T) {
 			http.ServeFile(w, r, "testdata/update_item.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.UpdateItem(ctx, Item{})
 		if err != nil {
 			t.Fatal(err)
@@ -179,7 +179,7 @@ func TestUpdateItem(t *testing.T) {
 			http.ServeFile(w, r, "testdata/update_item.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.UpdateItem(ctx, Item{})
 		if err == nil {
 			t.Fail()
@@ -195,7 +195,7 @@ func TestUnlikeItem(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.UnlikeItem(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -209,7 +209,7 @@ func TestUnlikeItem(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.UnlikeItem(ctx, "")
 		if err == nil {
 			t.Fail()
@@ -225,7 +225,7 @@ func TestLikeItem(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.LikeItem(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -239,7 +239,7 @@ func TestLikeItem(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.LikeItem(ctx, "")
 		if err == nil {
 			t.Fail()
@@ -255,7 +255,7 @@ func TestStockItem(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.StockItem(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -269,7 +269,7 @@ func TestStockItem(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.StockItem(ctx, "")
 		if err == nil {
 			t.Fail()
@@ -285,7 +285,7 @@ func TestUnstockItem(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.UnstockItem(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -299,7 +299,7 @@ func TestUnstockItem(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.UnstockItem(ctx, "")
 		if err == nil {
 			t.Fail()
@@ -315,7 +315,7 @@ func TestEnsureItemStock(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.EnsureItemStock(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -329,7 +329,7 @@ func TestEnsureItemStock(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.EnsureItemStock(ctx, "")
 		if err == nil {
 			t.Fail()
@@ -345,7 +345,7 @@ func TestEnsureItemLike(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.EnsureItemLike(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -359,7 +359,7 @@ func TestEnsureItemLike(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.EnsureItemLike(ctx, "")
 		if err == nil {
 			t.Fail()
@@ -375,7 +375,7 @@ func TestListTaggedItems(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_tagged_items.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListTaggedItems(ctx, "", 1, 1)
 		if err != nil {
 			t.Fatal(err)
@@ -389,7 +389,7 @@ func TestListTaggedItems(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_tagged_items.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListTaggedItems(ctx, "", 1, 1)
 		if err == nil {
 			t.Fail()
@@ -405,7 +405,7 @@ func TestListUserItems(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_user_items.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListUserItems(ctx, "", 1, 1)
 		if err != nil {
 			t.Fatal(err)
@@ -419,7 +419,7 @@ func TestListUserItems(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_user_items.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListUserItems(ctx, "", 1, 1)
 		if err == nil {
 			t.Fail()
@@ -435,7 +435,7 @@ func TestListUserStocks(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_user_stocks.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListUserStocks(ctx, "", 1, 1)
 		if err != nil {
 			t.Fatal(err)
@@ -449,7 +449,7 @@ func TestListUserStocks(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_user_stocks.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListUserStocks(ctx, "", 1, 1)
 		if err == nil {
 			t.Fail()

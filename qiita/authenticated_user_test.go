@@ -15,7 +15,7 @@ func TestGetAuthenticatedUser(t *testing.T) {
 			http.ServeFile(w, r, "testdata/get_authenticated_user.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.GetAuthenticatedUser(ctx)
 		if err != nil {
 			t.Fatal(err)
@@ -29,7 +29,7 @@ func TestGetAuthenticatedUser(t *testing.T) {
 			http.ServeFile(w, r, "testdata/get_authenticated_user.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.GetAuthenticatedUser(ctx)
 		if err == nil {
 			t.Fail()

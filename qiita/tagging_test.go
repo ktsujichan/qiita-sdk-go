@@ -15,7 +15,7 @@ func TestAddItemTagging(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.AddItemTagging(ctx, "", Tagging{})
 		if err != nil {
 			t.Fatal(err)
@@ -29,7 +29,7 @@ func TestAddItemTagging(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.AddItemTagging(ctx, "", Tagging{})
 		if err == nil {
 			t.Fail()
@@ -45,7 +45,7 @@ func TestDeleteItemTagging(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.DeleteItemTagging(ctx, "", "")
 		if err != nil {
 			t.Fatal(err)
@@ -59,7 +59,7 @@ func TestDeleteItemTagging(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.DeleteItemTagging(ctx, "", "")
 		if err == nil {
 			t.Fail()

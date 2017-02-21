@@ -15,7 +15,7 @@ func TestDeleteComment(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.DeleteComment(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -29,7 +29,7 @@ func TestDeleteComment(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.DeleteComment(ctx, "")
 		if err == nil {
 			t.Fail()
@@ -45,7 +45,7 @@ func TestGetComment(t *testing.T) {
 			http.ServeFile(w, r, "testdata/get_comment.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.GetComment(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -59,7 +59,7 @@ func TestGetComment(t *testing.T) {
 			http.ServeFile(w, r, "testdata/get_comment.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.GetComment(ctx, "")
 		if err == nil {
 			t.Fail()
@@ -75,7 +75,7 @@ func TestUpdateComment(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.UpdateComment(ctx, Comment{})
 		if err != nil {
 			t.Fatal(err)
@@ -89,7 +89,7 @@ func TestUpdateComment(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.UpdateComment(ctx, Comment{})
 		if err == nil {
 			t.Fail()
@@ -105,7 +105,7 @@ func TestListComments(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_comments.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListComments(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -119,7 +119,7 @@ func TestListComments(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_comments.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListComments(ctx, "")
 		if err == nil {
 			t.Fail()
@@ -135,7 +135,7 @@ func TestPostComment(t *testing.T) {
 			http.ServeFile(w, r, "testdata/post_comment.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.PostComment(ctx, "", Comment{})
 		if err != nil {
 			t.Fatal(err)
@@ -149,7 +149,7 @@ func TestPostComment(t *testing.T) {
 			http.ServeFile(w, r, "testdata/post_comment.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.PostComment(ctx, "", Comment{})
 		if err == nil {
 			t.Fail()

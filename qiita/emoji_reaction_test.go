@@ -15,7 +15,7 @@ func TestAddCommentReaction(t *testing.T) {
 			http.ServeFile(w, r, "testdata/add_comment_reaction.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.AddCommentReaction(ctx, "", Reaction{})
 		if err != nil {
 			t.Fatal(err)
@@ -29,7 +29,7 @@ func TestAddCommentReaction(t *testing.T) {
 			http.ServeFile(w, r, "testdata/add_comment_reaction.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.AddCommentReaction(ctx, "", Reaction{})
 		if err == nil {
 			t.Fail()
@@ -45,7 +45,7 @@ func TestAddItemReaction(t *testing.T) {
 			http.ServeFile(w, r, "testdata/add_item_reaction.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.AddItemReaction(ctx, "", Reaction{})
 		if err != nil {
 			t.Fatal(err)
@@ -59,7 +59,7 @@ func TestAddItemReaction(t *testing.T) {
 			http.ServeFile(w, r, "testdata/add_item_reaction.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.AddItemReaction(ctx, "", Reaction{})
 		if err == nil {
 			t.Fail()
@@ -75,7 +75,7 @@ func TestAddProjectReaction(t *testing.T) {
 			http.ServeFile(w, r, "testdata/add_project_reaction.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.AddProjectReaction(ctx, 1, Reaction{})
 		if err != nil {
 			t.Fatal(err)
@@ -89,7 +89,7 @@ func TestAddProjectReaction(t *testing.T) {
 			http.ServeFile(w, r, "testdata/add_project_reaction.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.AddProjectReaction(ctx, 1, Reaction{})
 		if err == nil {
 			t.Fail()
@@ -105,7 +105,7 @@ func TestDeleteCommentReaction(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.DeleteCommentReaction(ctx, "", "")
 		if err != nil {
 			t.Fatal(err)
@@ -119,7 +119,7 @@ func TestDeleteCommentReaction(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.DeleteCommentReaction(ctx, "", "")
 		if err == nil {
 			t.Fail()
@@ -135,7 +135,7 @@ func TestDeleteItemReaction(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.DeleteItemReaction(ctx, "", "")
 		if err != nil {
 			t.Fatal(err)
@@ -149,7 +149,7 @@ func TestDeleteItemReaction(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.DeleteItemReaction(ctx, "", "")
 		if err == nil {
 			t.Fail()
@@ -165,7 +165,7 @@ func TestDeleteProjectReaction(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.DeleteProjectReaction(ctx, 1, "")
 		if err != nil {
 			t.Fatal(err)
@@ -179,7 +179,7 @@ func TestDeleteProjectReaction(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.DeleteProjectReaction(ctx, 1, "")
 		if err == nil {
 			t.Fail()
@@ -195,7 +195,7 @@ func TestListCommentReactions(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_comment_reactions.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListCommentReactions(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -209,7 +209,7 @@ func TestListCommentReactions(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_comment_reactions.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListCommentReactions(ctx, "")
 		if err == nil {
 			t.Fail()
@@ -225,7 +225,7 @@ func TestListItemReactions(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_item_reactions.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListItemReactions(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -239,7 +239,7 @@ func TestListItemReactions(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_item_reactions.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListItemReactions(ctx, "")
 		if err == nil {
 			t.Fail()
@@ -255,7 +255,7 @@ func TestListProjectReactions(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_project_reactions.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListProjectReactions(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -269,7 +269,7 @@ func TestListProjectReactions(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_project_reactions.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListProjectReactions(ctx, "")
 		if err == nil {
 			t.Fail()

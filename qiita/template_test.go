@@ -15,7 +15,7 @@ func TestListTemplates(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_templates.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListTemplates(ctx, 1, 1)
 		if err != nil {
 			t.Fatal(err)
@@ -29,7 +29,7 @@ func TestListTemplates(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_templates.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListTemplates(ctx, 1, 1)
 		if err == nil {
 			t.Fail()
@@ -45,7 +45,7 @@ func TestDeleteTemplate(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.DeleteTemplate(ctx, 1)
 		if err != nil {
 			t.Fatal(err)
@@ -59,7 +59,7 @@ func TestDeleteTemplate(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.DeleteTemplate(ctx, 1)
 		if err == nil {
 			t.Fail()
@@ -75,7 +75,7 @@ func TestGetTemplate(t *testing.T) {
 			http.ServeFile(w, r, "testdata/get_template.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.GetTemplate(ctx, 1)
 		if err != nil {
 			t.Fatal(err)
@@ -89,7 +89,7 @@ func TestGetTemplate(t *testing.T) {
 			http.ServeFile(w, r, "testdata/get_template.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.GetTemplate(ctx, 1)
 		if err == nil {
 			t.Fail()
@@ -105,7 +105,7 @@ func TestCreateTemplate(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.CreateTemplate(ctx, Template{})
 		if err != nil {
 			t.Fatal(err)
@@ -119,7 +119,7 @@ func TestCreateTemplate(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.CreateTemplate(ctx, Template{})
 		if err == nil {
 			t.Fail()
@@ -135,7 +135,7 @@ func TestUpdateTemplate(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.UpdateTemplate(ctx, Template{})
 		if err != nil {
 			t.Fatal(err)
@@ -149,7 +149,7 @@ func TestUpdateTemplate(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.UpdateTemplate(ctx, Template{})
 		if err == nil {
 			t.Fail()

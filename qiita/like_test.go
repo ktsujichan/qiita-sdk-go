@@ -15,7 +15,7 @@ func TestListItemLikes(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_item_likes.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListItemLikes(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -29,7 +29,7 @@ func TestListItemLikes(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_item_likes.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListItemLikes(ctx, "")
 		if err == nil {
 			t.Fail()

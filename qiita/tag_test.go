@@ -15,7 +15,7 @@ func TestListTags(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_tags.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListTags(ctx, 1, 1, "")
 		if err != nil {
 			t.Fatal(err)
@@ -29,7 +29,7 @@ func TestListTags(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_tags.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListTags(ctx, 1, 1, "")
 		if err == nil {
 			t.Fail()
@@ -45,7 +45,7 @@ func TestGetTag(t *testing.T) {
 			http.ServeFile(w, r, "testdata/get_tag.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.GetTag(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -59,7 +59,7 @@ func TestGetTag(t *testing.T) {
 			http.ServeFile(w, r, "testdata/get_tag.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.GetTag(ctx, "")
 		if err == nil {
 			t.Fail()
@@ -75,7 +75,7 @@ func TestListFollowingTags(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_following_tags.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListFollowingTags(ctx, "", 1, 1)
 		if err != nil {
 			t.Fatal(err)
@@ -89,7 +89,7 @@ func TestListFollowingTags(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_following_tags.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListFollowingTags(ctx, "", 1, 1)
 		if err == nil {
 			t.Fail()
@@ -105,7 +105,7 @@ func TestUnfollowTag(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.UnfollowTag(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -119,7 +119,7 @@ func TestUnfollowTag(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.UnfollowTag(ctx, "")
 		if err == nil {
 			t.Fail()
@@ -135,7 +135,7 @@ func TestEnsureFollowingTag(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.EnsureFollowingTag(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -149,7 +149,7 @@ func TestEnsureFollowingTag(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.EnsureFollowingTag(ctx, "")
 		if err == nil {
 			t.Fail()
@@ -165,7 +165,7 @@ func TestFollowTag(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.FollowTag(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -179,7 +179,7 @@ func TestFollowTag(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.FollowTag(ctx, "")
 		if err == nil {
 			t.Fail()

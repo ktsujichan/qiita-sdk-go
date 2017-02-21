@@ -15,7 +15,7 @@ func TestListStockers(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_stockers.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListStockers(ctx, "", 1, 1)
 		if err != nil {
 			t.Fatal(err)
@@ -29,7 +29,7 @@ func TestListStockers(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_stockers.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListStockers(ctx, "", 1, 1)
 		if err == nil {
 			t.Fail()
@@ -45,7 +45,7 @@ func TestListUsers(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_users.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListUsers(ctx, 1, 1)
 		if err != nil {
 			t.Fatal(err)
@@ -59,7 +59,7 @@ func TestListUsers(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_users.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListUsers(ctx, 1, 1)
 		if err == nil {
 			t.Fail()
@@ -75,7 +75,7 @@ func TestGetUser(t *testing.T) {
 			http.ServeFile(w, r, "testdata/get_user.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.GetUser(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -89,7 +89,7 @@ func TestGetUser(t *testing.T) {
 			http.ServeFile(w, r, "testdata/get_user.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.GetUser(ctx, "")
 		if err == nil {
 			t.Fail()
@@ -105,7 +105,7 @@ func TestListFollowees(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_followees.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListFollowees(ctx, "", 1, 1)
 		if err != nil {
 			t.Fatal(err)
@@ -119,7 +119,7 @@ func TestListFollowees(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_followees.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListFollowees(ctx, "", 1, 1)
 		if err == nil {
 			t.Fail()
@@ -135,7 +135,7 @@ func TestListFollowers(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_followers.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListFollowers(ctx, "", 1, 1)
 		if err != nil {
 			t.Fatal(err)
@@ -149,7 +149,7 @@ func TestListFollowers(t *testing.T) {
 			http.ServeFile(w, r, "testdata/list_followers.json")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		_, err := c.ListFollowers(ctx, "", 1, 1)
 		if err == nil {
 			t.Fail()
@@ -165,7 +165,7 @@ func TestUnfollowUser(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.UnfollowUser(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -179,7 +179,7 @@ func TestUnfollowUser(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.UnfollowUser(ctx, "")
 		if err == nil {
 			t.Fail()
@@ -195,7 +195,7 @@ func TestEnsureFollowingUser(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.EnsureFollowingUser(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -209,7 +209,7 @@ func TestEnsureFollowingUser(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.EnsureFollowingUser(ctx, "")
 		if err == nil {
 			t.Fail()
@@ -225,7 +225,7 @@ func TestFollowUser(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.FollowUser(ctx, "")
 		if err != nil {
 			t.Fatal(err)
@@ -239,7 +239,7 @@ func TestFollowUser(t *testing.T) {
 			http.ServeFile(w, r, "")
 		}))
 		c, _ := mockClient(server)
-		ctx, _ := context.WithCancel(context.Background())
+		ctx := context.TODO()
 		err := c.FollowUser(ctx, "")
 		if err == nil {
 			t.Fail()
