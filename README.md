@@ -11,7 +11,7 @@ Qiita API v2 client library written in Golang.
 
 ## Install
 ```
-go get -u github.com/ktsujichan/qiita-sdk-go
+go get -u github.com/ktsujichan/qiita-sdk-go/qiita
 ```
 
 ## Library
