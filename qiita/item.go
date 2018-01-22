@@ -63,7 +63,9 @@ func (c *Client) ListItems(ctx context.Context, page, perPage uint, query string
 	values := url.Values{}
 	values.Add("page", fmt.Sprint(page))
 	values.Add("per_page", fmt.Sprint(perPage))
-	values.Add("query", query)
+	if query != "" {
+		values.Add("query", query)
+	}
 	rawQuery := values.Encode()
 	res, err := c.get(ctx, "/api/v2/items", &rawQuery)
 	if err != nil {
