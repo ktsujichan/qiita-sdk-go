@@ -20,8 +20,8 @@ type Likes []Like
 
 	GET /api/v2/items/:item_id/likes
 */
-func (c *Client) ListItemLikes(ctx context.Context, itemId string) (*Likes, error) {
-	p := fmt.Sprintf("/api/v2/items/%s/likes", itemId)
+func (c *Client) ListItemLikes(ctx context.Context, itemID string) (*Likes, error) {
+	p := fmt.Sprintf("/api/v2/items/%s/likes", itemID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return nil, err

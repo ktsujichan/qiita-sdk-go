@@ -21,7 +21,10 @@ type ExpandedTemplate struct {
 	POST /api/v2/expanded_templates
 */
 func (c *Client) CreateExpandedTemplate(ctx context.Context, template Template) (*ExpandedTemplate, error) {
-	b, _ := json.Marshal(template)
+	b, err := json.Marshal(template)
+	if err != nil {
+		return nil, err
+	}
 	res, err := c.post(ctx, "/api/v2/expanded_templates", bytes.NewBuffer(b))
 	if err != nil {
 		return nil, err

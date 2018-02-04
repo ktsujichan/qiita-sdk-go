@@ -9,7 +9,7 @@ import (
 // Represents a team on Qiita:Team (only available on Qiita:Team).
 type Team struct {
 	Archive bool   `json:"archive"`
-	Id      string `json:"id"`
+	ID      string `json:"id"`
 	Name    string `json:"name"`
 }
 

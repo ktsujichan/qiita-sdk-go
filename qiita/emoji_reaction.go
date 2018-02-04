@@ -11,10 +11,10 @@ import (
 
 // An emoji reaction.
 type Reaction struct {
-	CreatedAt string `json:"created_at,omitemoty"`
-	ImageUrl  string `json:"image_url,omitemoty"`
+	CreatedAt string `json:"created_at,omitempty"`
+	ImageURL  string `json:"image_url,omitempty"`
 	Name      string `json:"name"`
-	User      User   `json:"user,omitemoty"`
+	User      User   `json:"user,omitempty"`
 }
 
 type Reactions []Reaction
@@ -24,9 +24,12 @@ type Reactions []Reaction
 
 	POST /api/v2/comments/:comment_id/reactions
 */
-func (c *Client) AddCommentReaction(ctx context.Context, commentId string, reaction Reaction) error {
-	b, _ := json.Marshal(reaction)
-	p := fmt.Sprintf("/api/v2/comments/%s/reactions", commentId)
+func (c *Client) AddCommentReaction(ctx context.Context, commentID string, reaction Reaction) error {
+	b, err := json.Marshal(reaction)
+	if err != nil {
+		return err
+	}
+	p := fmt.Sprintf("/api/v2/comments/%s/reactions", commentID)
 	res, err := c.post(ctx, p, bytes.NewBuffer(b))
 	if err != nil {
 		return err
@@ -42,9 +45,12 @@ func (c *Client) AddCommentReaction(ctx context.Context, commentId string, react
 
 	POST /api/v2/items/:item_id/reactions
 */
-func (c *Client) AddItemReaction(ctx context.Context, itemId string, reaction Reaction) error {
-	b, _ := json.Marshal(reaction)
-	p := fmt.Sprintf("/api/v2/items/%s/reactions", itemId)
+func (c *Client) AddItemReaction(ctx context.Context, itemID string, reaction Reaction) error {
+	b, err := json.Marshal(reaction)
+	if err != nil {
+		return err
+	}
+	p := fmt.Sprintf("/api/v2/items/%s/reactions", itemID)
 	res, err := c.post(ctx, p, bytes.NewBuffer(b))
 	if err != nil {
 		return err
@@ -60,9 +66,12 @@ func (c *Client) AddItemReaction(ctx context.Context, itemId string, reaction Re
 
 	POST /api/v2/projects/:project_id/reactions
 */
-func (c *Client) AddProjectReaction(ctx context.Context, projectId uint, reaction Reaction) error {
-	b, _ := json.Marshal(reaction)
-	p := fmt.Sprintf("/api/v2/projects/%d/reactions", projectId)
+func (c *Client) AddProjectReaction(ctx context.Context, projectID uint, reaction Reaction) error {
+	b, err := json.Marshal(reaction)
+	if err != nil {
+		return err
+	}
+	p := fmt.Sprintf("/api/v2/projects/%d/reactions", projectID)
 	res, err := c.post(ctx, p, bytes.NewBuffer(b))
 	if err != nil {
 		return err
@@ -78,8 +87,8 @@ func (c *Client) AddProjectReaction(ctx context.Context, projectId uint, reactio
 
 	DELETE /api/v2/comments/:comment_id/reactions/:reaction_name
 */
-func (c *Client) DeleteCommentReaction(ctx context.Context, commentId, reactionName string) error {
-	p := fmt.Sprintf("/api/v2/comments/%s/reactions/%s", commentId, reactionName)
+func (c *Client) DeleteCommentReaction(ctx context.Context, commentID, reactionName string) error {
+	p := fmt.Sprintf("/api/v2/comments/%s/reactions/%s", commentID, reactionName)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
@@ -95,8 +104,8 @@ func (c *Client) DeleteCommentReaction(ctx context.Context, commentId, reactionN
 
 	DELETE /api/v2/items/:item_id/reactions/:reaction_name
 */
-func (c *Client) DeleteItemReaction(ctx context.Context, itemId, reactionName string) error {
-	p := fmt.Sprintf("/api/v2/items/%s/reactions/%s", itemId, reactionName)
+func (c *Client) DeleteItemReaction(ctx context.Context, itemID, reactionName string) error {
+	p := fmt.Sprintf("/api/v2/items/%s/reactions/%s", itemID, reactionName)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
@@ -112,8 +121,8 @@ func (c *Client) DeleteItemReaction(ctx context.Context, itemId, reactionName st
 
 	DELETE /api/v2/projects/:project_id/reactions/:reaction_name
 */
-func (c *Client) DeleteProjectReaction(ctx context.Context, projectId uint, reactionName string) error {
-	p := fmt.Sprintf("/api/v2/projects/%d/reactions/%s", projectId, reactionName)
+func (c *Client) DeleteProjectReaction(ctx context.Context, projectID uint, reactionName string) error {
+	p := fmt.Sprintf("/api/v2/projects/%d/reactions/%s", projectID, reactionName)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
@@ -129,8 +138,8 @@ func (c *Client) DeleteProjectReaction(ctx context.Context, projectId uint, reac
 
 	GET /api/v2/comments/:comment_id/reactions
 */
-func (c *Client) ListCommentReactions(ctx context.Context, commentId string) (*Reactions, error) {
-	p := fmt.Sprintf("/api/v2/comments/%s/reactions", commentId)
+func (c *Client) ListCommentReactions(ctx context.Context, commentID string) (*Reactions, error) {
+	p := fmt.Sprintf("/api/v2/comments/%s/reactions", commentID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return nil, err
@@ -150,8 +159,8 @@ func (c *Client) ListCommentReactions(ctx context.Context, commentId string) (*R
 
 	GET /api/v2/items/:item_id/reactions
 */
-func (c *Client) ListItemReactions(ctx context.Context, itemId string) (*Reactions, error) {
-	p := fmt.Sprintf("/api/v2/items/%s/reactions", itemId)
+func (c *Client) ListItemReactions(ctx context.Context, itemID string) (*Reactions, error) {
+	p := fmt.Sprintf("/api/v2/items/%s/reactions", itemID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return nil, err
@@ -171,8 +180,8 @@ func (c *Client) ListItemReactions(ctx context.Context, itemId string) (*Reactio
 
 	GET /api/v2/projects/:project_id/reactions
 */
-func (c *Client) ListProjectReactions(ctx context.Context, projectId string) (*Reactions, error) {
-	p := fmt.Sprintf("/api/v2/projects/%s/reactions", projectId)
+func (c *Client) ListProjectReactions(ctx context.Context, projectID string) (*Reactions, error) {
+	p := fmt.Sprintf("/api/v2/projects/%s/reactions", projectID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return nil, err

@@ -51,6 +51,18 @@ func decodeBody(res *http.Response, out interface{}) error {
 	return decoder.Decode(out)
 }
 
+func rawQuery(query map[string]interface{}) *string {
+	values := url.Values{}
+	for k, v := range query {
+		value := fmt.Sprint(v)
+		if value != "" {
+			values.Add(k, value)
+		}
+	}
+	q := values.Encode()
+	return &q
+}
+
 func (c *Client) url(endpoint string) string {
 	u := *c.URL
 	u.Path = path.Join(c.URL.Path, endpoint)
@@ -63,42 +75,43 @@ func (c *Client) do(ctx context.Context, req *http.Request) (*http.Response, err
 	return c.HTTPClient.Do(req)
 }
 
-func (c *Client) get(ctx context.Context, endpoint string, rawQuery *string) (*http.Response, error) {
+func (c *Client) get(ctx context.Context, endpoint string, q map[string]interface{}) (*http.Response, error) {
 	req, err := http.NewRequest(http.MethodGet, c.url(endpoint), nil)
-	if rawQuery != nil {
-		req.URL.RawQuery = *rawQuery
-	}
 	if err != nil {
 		return nil, err
+	}
+	query := rawQuery(q)
+	if query != nil {
+		req.URL.RawQuery = *query
 	}
 	return c.do(ctx, req)
 }
 
-func (client *Client) post(ctx context.Context, endpoint string, body io.Reader) (*http.Response, error) {
-	req, err := http.NewRequest(http.MethodPost, client.url(endpoint), body)
+func (c *Client) post(ctx context.Context, endpoint string, body io.Reader) (*http.Response, error) {
+	req, err := http.NewRequest(http.MethodPost, c.url(endpoint), body)
 	if err != nil {
 		return nil, err
 	}
 	req.Header.Set("Content-Type", "application/json; charset=UTF-8")
-	return client.do(ctx, req)
+	return c.do(ctx, req)
 }
 
-func (client *Client) patch(ctx context.Context, endpoint string, body io.Reader) (*http.Response, error) {
-	req, err := http.NewRequest(http.MethodPatch, client.url(endpoint), body)
+func (c *Client) patch(ctx context.Context, endpoint string, body io.Reader) (*http.Response, error) {
+	req, err := http.NewRequest(http.MethodPatch, c.url(endpoint), body)
 	if err != nil {
 		return nil, err
 	}
 	req.Header.Set("Content-Type", "application/json; charset=UTF-8")
-	return client.do(ctx, req)
+	return c.do(ctx, req)
 }
 
-func (client *Client) put(ctx context.Context, endpoint string, body io.Reader) (*http.Response, error) {
-	req, err := http.NewRequest(http.MethodPut, client.url(endpoint), body)
+func (c *Client) put(ctx context.Context, endpoint string, body io.Reader) (*http.Response, error) {
+	req, err := http.NewRequest(http.MethodPut, c.url(endpoint), body)
 	if err != nil {
 		return nil, err
 	}
 	req.Header.Set("Content-Type", "application/json; charset=UTF-8")
-	return client.do(ctx, req)
+	return c.do(ctx, req)
 }
 
 func (c *Client) delete(ctx context.Context, endpoint string) (*http.Response, error) {

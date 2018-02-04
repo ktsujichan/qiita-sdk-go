@@ -7,7 +7,6 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
-	"net/url"
 )
 
 // Represents a project on Qiita:Team (only available on Qiita:Team).
@@ -15,7 +14,7 @@ type Project struct {
 	Archived     bool      `json:"archived"`
 	Body         string    `json:"body"`
 	CreatedAt    string    `json:"created_at,omitempty"`
-	Id           uint      `json:"id,omitempty"`
+	ID           uint      `json:"id,omitempty"`
 	Name         string    `json:"name"`
 	RenderedBody string    `json:"rendered_body,omitempty"`
 	Tags         *Taggings `json:"tags,omitempty"`
@@ -30,11 +29,10 @@ type Projects []Project
 	GET /api/v2/projects
 */
 func (c *Client) ListProjects(ctx context.Context, page, perPage uint) (*Projects, error) {
-	values := url.Values{}
-	values.Add("page", fmt.Sprint(page))
-	values.Add("per_page", fmt.Sprint(perPage))
-	rawQuery := values.Encode()
-	res, err := c.get(ctx, "/api/v2/projects", &rawQuery)
+	res, err := c.get(ctx, "/api/v2/projects", map[string]interface{}{
+		"page":     page,
+		"per_page": perPage,
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -54,7 +52,10 @@ func (c *Client) ListProjects(ctx context.Context, page, perPage uint) (*Project
 	POST /api/v2/projects
 */
 func (c *Client) CreateProject(ctx context.Context, project Project) error {
-	b, _ := json.Marshal(project)
+	b, err := json.Marshal(project)
+	if err != nil {
+		return err
+	}
 	res, err := c.post(ctx, "/api/v2/projects", bytes.NewBuffer(b))
 	if err != nil {
 		return err
@@ -70,8 +71,8 @@ func (c *Client) CreateProject(ctx context.Context, project Project) error {
 
 	DELETE /api/v2/projects/:project_id
 */
-func (c *Client) DeleteProject(ctx context.Context, projectId uint) error {
-	p := fmt.Sprintf("/api/v2/projects/%d", projectId)
+func (c *Client) DeleteProject(ctx context.Context, projectID uint) error {
+	p := fmt.Sprintf("/api/v2/projects/%d", projectID)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
@@ -87,13 +88,12 @@ func (c *Client) DeleteProject(ctx context.Context, projectId uint) error {
 
 	GET /api/v2/projects/:project_id
 */
-func (c *Client) GetProject(ctx context.Context, projectId string, page, perPage uint) (*Project, error) {
-	p := fmt.Sprintf("/api/v2/projects/%s", projectId)
-	values := url.Values{}
-	values.Add("page", fmt.Sprint(page))
-	values.Add("per_page", fmt.Sprint(perPage))
-	rawQuery := values.Encode()
-	res, err := c.get(ctx, p, &rawQuery)
+func (c *Client) GetProject(ctx context.Context, projectID string, page, perPage uint) (*Project, error) {
+	p := fmt.Sprintf("/api/v2/projects/%s", projectID)
+	res, err := c.get(ctx, p, map[string]interface{}{
+		"page":     page,
+		"per_page": perPage,
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -113,8 +113,11 @@ func (c *Client) GetProject(ctx context.Context, projectId string, page, perPage
 	PATCH /api/v2/projects/:project_id
 */
 func (c *Client) UpdateProject(ctx context.Context, project Project) error {
-	b, _ := json.Marshal(project)
-	p := fmt.Sprintf("/api/v2/projects/%d", project.Id)
+	b, err := json.Marshal(project)
+	if err != nil {
+		return err
+	}
+	p := fmt.Sprintf("/api/v2/projects/%d", project.ID)
 	res, err := c.patch(ctx, p, bytes.NewBuffer(b))
 	if err != nil {
 		return err

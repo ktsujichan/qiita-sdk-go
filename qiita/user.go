@@ -5,26 +5,25 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
-	"net/url"
 )
 
 // A Qiita user (a.k.a. account)
 type User struct {
 	Description       string `json:"description"`
-	FacebookId        string `json:"facebook_id"`
+	FacebookID        string `json:"facebook_id"`
 	FolloweesCount    uint   `json:"followees_count"`
 	FollowersCount    uint   `json:"followers_count"`
 	GitHubLoginName   string `json:"github_login_name"`
-	Id                string `json:"id"`
+	ID                string `json:"id"`
 	ItemCount         uint   `json:"item_count"`
-	LinkedinId        string `json:"linkedin_id"`
+	LinkedinID        string `json:"linkedin_id"`
 	Location          string `json:"location"`
 	Name              string `json:"name"`
 	Organization      string `json:"organization"`
-	PermanentId       uint   `json:"permanent_id"`
-	ProfileImageUrl   string `json:"profile_image_url"`
+	PermanentID       uint   `json:"permanent_id"`
+	ProfileImageURL   string `json:"profile_image_url"`
 	TwitterScreenName string `json:"twitter_screen_name"`
-	WebsiteUrl        string `json:"website_url"`
+	WebsiteURL        string `json:"website_url"`
 }
 
 type Users []User
@@ -34,13 +33,12 @@ type Users []User
 
 	GET /api/v2/items/:item_id/stockers
 */
-func (c *Client) ListStockers(ctx context.Context, itemId string, page, perPage uint) (*Users, error) {
-	p := fmt.Sprintf("/api/v2/items/%s/stockers", itemId)
-	values := url.Values{}
-	values.Add("page", fmt.Sprint(page))
-	values.Add("per_page", fmt.Sprint(perPage))
-	rawQuery := values.Encode()
-	res, err := c.get(ctx, p, &rawQuery)
+func (c *Client) ListStockers(ctx context.Context, itemID string, page, perPage uint) (*Users, error) {
+	p := fmt.Sprintf("/api/v2/items/%s/stockers", itemID)
+	res, err := c.get(ctx, p, map[string]interface{}{
+		"page":     page,
+		"per_page": perPage,
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -60,11 +58,10 @@ func (c *Client) ListStockers(ctx context.Context, itemId string, page, perPage 
 	GET /api/v2/users
 */
 func (c *Client) ListUsers(ctx context.Context, page, perPage uint) (*Users, error) {
-	values := url.Values{}
-	values.Add("page", fmt.Sprint(page))
-	values.Add("per_page", fmt.Sprint(perPage))
-	rawQuery := values.Encode()
-	res, err := c.get(ctx, "/api/v2/users", &rawQuery)
+	res, err := c.get(ctx, "/api/v2/users", map[string]interface{}{
+		"page":     page,
+		"per_page": perPage,
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -83,8 +80,8 @@ func (c *Client) ListUsers(ctx context.Context, page, perPage uint) (*Users, err
 
 	GET /api/v2/users/:user_id
 */
-func (c *Client) GetUser(ctx context.Context, userId string) (*User, error) {
-	p := fmt.Sprintf("/api/v2/users/%s", userId)
+func (c *Client) GetUser(ctx context.Context, userID string) (*User, error) {
+	p := fmt.Sprintf("/api/v2/users/%s", userID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return nil, err
@@ -104,13 +101,12 @@ func (c *Client) GetUser(ctx context.Context, userId string) (*User, error) {
 
 	GET /api/v2/users/:user_id/followees
 */
-func (c *Client) ListFollowees(ctx context.Context, userId string, page, perPage uint) (*Users, error) {
-	p := fmt.Sprintf("/api/v2/users/%s/followees", userId)
-	values := url.Values{}
-	values.Add("page", fmt.Sprint(page))
-	values.Add("per_page", fmt.Sprint(perPage))
-	rawQuery := values.Encode()
-	res, err := c.get(ctx, p, &rawQuery)
+func (c *Client) ListFollowees(ctx context.Context, userID string, page, perPage uint) (*Users, error) {
+	p := fmt.Sprintf("/api/v2/users/%s/followees", userID)
+	res, err := c.get(ctx, p, map[string]interface{}{
+		"page":     page,
+		"per_page": perPage,
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -129,13 +125,12 @@ func (c *Client) ListFollowees(ctx context.Context, userId string, page, perPage
 
 	GET /api/v2/users/:user_id/followers
 */
-func (c *Client) ListFollowers(ctx context.Context, userId string, page, perPage uint) (*Users, error) {
-	p := fmt.Sprintf("/api/v2/users/%s/followers", userId)
-	values := url.Values{}
-	values.Add("page", fmt.Sprint(page))
-	values.Add("per_page", fmt.Sprint(perPage))
-	rawQuery := values.Encode()
-	res, err := c.get(ctx, p, &rawQuery)
+func (c *Client) ListFollowers(ctx context.Context, userID string, page, perPage uint) (*Users, error) {
+	p := fmt.Sprintf("/api/v2/users/%s/followers", userID)
+	res, err := c.get(ctx, p, map[string]interface{}{
+		"page":     page,
+		"per_page": perPage,
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -154,8 +149,8 @@ func (c *Client) ListFollowers(ctx context.Context, userId string, page, perPage
 
 	DELETE /api/v2/users/:user_id/following
 */
-func (c *Client) UnfollowUser(ctx context.Context, userId string) error {
-	p := fmt.Sprintf("/api/v2/users/%s/following", userId)
+func (c *Client) UnfollowUser(ctx context.Context, userID string) error {
+	p := fmt.Sprintf("/api/v2/users/%s/following", userID)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
@@ -171,8 +166,8 @@ func (c *Client) UnfollowUser(ctx context.Context, userId string) error {
 
 	GET /api/v2/users/:user_id/following
 */
-func (c *Client) EnsureFollowingUser(ctx context.Context, userId string) error {
-	p := fmt.Sprintf("/api/v2/users/%s/following", userId)
+func (c *Client) EnsureFollowingUser(ctx context.Context, userID string) error {
+	p := fmt.Sprintf("/api/v2/users/%s/following", userID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return err
@@ -188,8 +183,8 @@ func (c *Client) EnsureFollowingUser(ctx context.Context, userId string) error {
 
 	PUT /api/v2/users/:user_id/following
 */
-func (c *Client) FollowUser(ctx context.Context, userId string) error {
-	p := fmt.Sprintf("/api/v2/users/%s/following", userId)
+func (c *Client) FollowUser(ctx context.Context, userID string) error {
+	p := fmt.Sprintf("/api/v2/users/%s/following", userID)
 	res, err := c.put(ctx, p, nil)
 	if err != nil {
 		return err

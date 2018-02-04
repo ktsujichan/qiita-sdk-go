@@ -11,13 +11,13 @@ import (
 
 // Access token for Qiita API v2
 type AccessToken struct {
-	ClientId string   `json:"client_id"`
+	ClientID string   `json:"client_id"`
 	Scopes   []string `json:"scopes"`
 	Token    string   `json:"token"`
 }
 
 type Auth struct {
-	ClientId     string `json:"client_id"`
+	ClientID     string `json:"client_id"`
 	ClientSecret string `json:"client_secret"`
 	Code         string `json:"code"`
 }
@@ -28,7 +28,10 @@ type Auth struct {
 	POST /api/v2/access_tokens
 */
 func (c *Client) CreateAccessToken(ctx context.Context, auth Auth) error {
-	b, _ := json.Marshal(auth)
+	b, err := json.Marshal(auth)
+	if err != nil {
+		return err
+	}
 	res, err := c.post(ctx, "/api/v2/access_tokens", bytes.NewBuffer(b))
 	if err != nil {
 		return err

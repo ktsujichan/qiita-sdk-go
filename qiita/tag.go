@@ -5,14 +5,13 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
-	"net/url"
 )
 
 // A tag attached to an item
 type Tag struct {
 	FollowersCount uint   `json:"followers_count"`
-	IconUrl        string `json:"icon_url"`
-	Id             string `json:"id"`
+	IconURL        string `json:"icon_url"`
+	ID             string `json:"id"`
 	ItemsCount     uint   `json:"items_count"`
 }
 
@@ -24,12 +23,11 @@ type Tags []Tag
 	GET /api/v2/tags
 */
 func (c *Client) ListTags(ctx context.Context, page, perPage uint, sort string) (*Tags, error) {
-	values := url.Values{}
-	values.Add("page", fmt.Sprint(page))
-	values.Add("per_page", fmt.Sprint(perPage))
-	values.Add("sort", sort)
-	rawQuery := values.Encode()
-	res, err := c.get(ctx, "/api/v2/tags", &rawQuery)
+	res, err := c.get(ctx, "/api/v2/tags", map[string]interface{}{
+		"page":     page,
+		"per_page": perPage,
+		"sort":     sort,
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -48,8 +46,8 @@ func (c *Client) ListTags(ctx context.Context, page, perPage uint, sort string) 
 
 	GET /api/v2/tags/:tag_id
 */
-func (c *Client) GetTag(ctx context.Context, tagId string) (*Tag, error) {
-	p := fmt.Sprintf("/api/v2/tags/%s", tagId)
+func (c *Client) GetTag(ctx context.Context, tagID string) (*Tag, error) {
+	p := fmt.Sprintf("/api/v2/tags/%s", tagID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return nil, err
@@ -69,13 +67,12 @@ func (c *Client) GetTag(ctx context.Context, tagId string) (*Tag, error) {
 
 	GET /api/v2/users/:user_id/following_tags
 */
-func (c *Client) ListFollowingTags(ctx context.Context, userId string, page, perPage uint) (*Tags, error) {
-	p := fmt.Sprintf("/api/v2/users/%s/following_tags", userId)
-	values := url.Values{}
-	values.Add("page", fmt.Sprint(page))
-	values.Add("per_page", fmt.Sprint(perPage))
-	rawQuery := values.Encode()
-	res, err := c.get(ctx, p, &rawQuery)
+func (c *Client) ListFollowingTags(ctx context.Context, userID string, page, perPage uint) (*Tags, error) {
+	p := fmt.Sprintf("/api/v2/users/%s/following_tags", userID)
+	res, err := c.get(ctx, p, map[string]interface{}{
+		"page":     page,
+		"per_page": perPage,
+	})
 	if err != nil {
 		return nil, err
 	}
@@ -94,8 +91,8 @@ func (c *Client) ListFollowingTags(ctx context.Context, userId string, page, per
 
 	DELETE /api/v2/tags/:tag_id/following
 */
-func (c *Client) UnfollowTag(ctx context.Context, tagId string) error {
-	p := fmt.Sprintf("/api/v2/tags/%s/following", tagId)
+func (c *Client) UnfollowTag(ctx context.Context, tagID string) error {
+	p := fmt.Sprintf("/api/v2/tags/%s/following", tagID)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
@@ -111,8 +108,8 @@ func (c *Client) UnfollowTag(ctx context.Context, tagId string) error {
 
 	GET /api/v2/tags/:tag_id/following
 */
-func (c *Client) EnsureFollowingTag(ctx context.Context, tagId string) error {
-	p := fmt.Sprintf("/api/v2/tags/%s/following", tagId)
+func (c *Client) EnsureFollowingTag(ctx context.Context, tagID string) error {
+	p := fmt.Sprintf("/api/v2/tags/%s/following", tagID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return err
@@ -128,8 +125,8 @@ func (c *Client) EnsureFollowingTag(ctx context.Context, tagId string) error {
 
 	PUT /api/v2/tags/:tag_id/following
 */
-func (c *Client) FollowTag(ctx context.Context, tagId string) error {
-	p := fmt.Sprintf("/api/v2/tags/%s/following", tagId)
+func (c *Client) FollowTag(ctx context.Context, tagID string) error {
+	p := fmt.Sprintf("/api/v2/tags/%s/following", tagID)
 	res, err := c.put(ctx, p, nil)
 	if err != nil {
 		return err
