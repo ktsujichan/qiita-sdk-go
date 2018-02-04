@@ -7,9 +7,8 @@ import (
 	"testing"
 )
 
-func TestListTags(t *testing.T) {
-	// 200
-	func() {
+func TestClient_ListTags(t *testing.T) {
+	t.Run("200", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
 			http.ServeFile(w, r, "testdata/list_tags.json")
@@ -20,10 +19,9 @@ func TestListTags(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "testdata/list_tags.json")
@@ -34,12 +32,11 @@ func TestListTags(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestGetTag(t *testing.T) {
-	// 200
-	func() {
+func TestClient_GetTag(t *testing.T) {
+	t.Run("200", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
 			http.ServeFile(w, r, "testdata/get_tag.json")
@@ -50,10 +47,9 @@ func TestGetTag(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "testdata/get_tag.json")
@@ -64,12 +60,11 @@ func TestGetTag(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestListFollowingTags(t *testing.T) {
-	// 200
-	func() {
+func TestClient_ListFollowingTags(t *testing.T) {
+	t.Run("200", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
 			http.ServeFile(w, r, "testdata/list_following_tags.json")
@@ -80,10 +75,9 @@ func TestListFollowingTags(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "testdata/list_following_tags.json")
@@ -94,12 +88,11 @@ func TestListFollowingTags(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestUnfollowTag(t *testing.T) {
-	// 204
-	func() {
+func TestClient_UnfollowTag(t *testing.T) {
+	t.Run("204", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusNoContent)
 			http.ServeFile(w, r, "")
@@ -110,10 +103,9 @@ func TestUnfollowTag(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "")
@@ -124,12 +116,11 @@ func TestUnfollowTag(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestEnsureFollowingTag(t *testing.T) {
-	// 204
-	func() {
+func TestClient_EnsureFollowingTag(t *testing.T) {
+	t.Run("204", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusNoContent)
 			http.ServeFile(w, r, "")
@@ -140,10 +131,9 @@ func TestEnsureFollowingTag(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "")
@@ -154,12 +144,11 @@ func TestEnsureFollowingTag(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestFollowTag(t *testing.T) {
-	// 204
-	func() {
+func TestClient_FollowTag(t *testing.T) {
+	t.Run("204", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusNoContent)
 			http.ServeFile(w, r, "")
@@ -170,10 +159,9 @@ func TestFollowTag(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "")
@@ -184,5 +172,5 @@ func TestFollowTag(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }

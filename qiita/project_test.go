@@ -7,9 +7,8 @@ import (
 	"testing"
 )
 
-func TestGetProjects(t *testing.T) {
-	// 200
-	func() {
+func TestClient_GetProjects(t *testing.T) {
+	t.Run("200", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
 			http.ServeFile(w, r, "testdata/get_projects.json")
@@ -20,10 +19,9 @@ func TestGetProjects(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "testdata/get_projects.json")
@@ -34,12 +32,11 @@ func TestGetProjects(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestCreateProject(t *testing.T) {
-	// 201
-	func() {
+func TestClient_CreateProject(t *testing.T) {
+	t.Run("201", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusCreated)
 			http.ServeFile(w, r, "")
@@ -50,10 +47,9 @@ func TestCreateProject(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "")
@@ -64,12 +60,11 @@ func TestCreateProject(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestDeleteProject(t *testing.T) {
-	// 204
-	func() {
+func TestClient_DeleteProject(t *testing.T) {
+	t.Run("204", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusNoContent)
 			http.ServeFile(w, r, "")
@@ -80,10 +75,9 @@ func TestDeleteProject(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "")
@@ -94,12 +88,11 @@ func TestDeleteProject(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestGetProject(t *testing.T) {
-	// 200
-	func() {
+func TestClient_GetProject(t *testing.T) {
+	t.Run("200", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
 			http.ServeFile(w, r, "testdata/get_project.json")
@@ -110,10 +103,9 @@ func TestGetProject(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "testdata/get_project.json")
@@ -124,12 +116,11 @@ func TestGetProject(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestUpdateProject(t *testing.T) {
-	// 200
-	func() {
+func TestClient_UpdateProject(t *testing.T) {
+	t.Run("200", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
 			http.ServeFile(w, r, "")
@@ -140,10 +131,9 @@ func TestUpdateProject(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "")
@@ -154,5 +144,5 @@ func TestUpdateProject(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }

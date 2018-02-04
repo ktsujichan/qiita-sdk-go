@@ -7,9 +7,8 @@ import (
 	"testing"
 )
 
-func TestListTemplates(t *testing.T) {
-	// 200
-	func() {
+func TestClient_ListTemplates(t *testing.T) {
+	t.Run("200", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
 			http.ServeFile(w, r, "testdata/list_templates.json")
@@ -20,10 +19,9 @@ func TestListTemplates(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "testdata/list_templates.json")
@@ -34,12 +32,11 @@ func TestListTemplates(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestDeleteTemplate(t *testing.T) {
-	// 204
-	func() {
+func TestClient_DeleteTemplate(t *testing.T) {
+	t.Run("204", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusNoContent)
 			http.ServeFile(w, r, "")
@@ -50,10 +47,9 @@ func TestDeleteTemplate(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "")
@@ -64,12 +60,11 @@ func TestDeleteTemplate(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestGetTemplate(t *testing.T) {
-	// 200
-	func() {
+func TestClient_GetTemplate(t *testing.T) {
+	t.Run("200", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
 			http.ServeFile(w, r, "testdata/get_template.json")
@@ -80,10 +75,9 @@ func TestGetTemplate(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "testdata/get_template.json")
@@ -94,12 +88,11 @@ func TestGetTemplate(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestCreateTemplate(t *testing.T) {
-	// 201
-	func() {
+func TestClient_CreateTemplate(t *testing.T) {
+	t.Run("201", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusCreated)
 			http.ServeFile(w, r, "")
@@ -110,10 +103,9 @@ func TestCreateTemplate(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "")
@@ -124,12 +116,11 @@ func TestCreateTemplate(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestUpdateTemplate(t *testing.T) {
-	// 200
-	func() {
+func TestClient_UpdateTemplate(t *testing.T) {
+	t.Run("200", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
 			http.ServeFile(w, r, "")
@@ -140,10 +131,9 @@ func TestUpdateTemplate(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "")
@@ -154,5 +144,5 @@ func TestUpdateTemplate(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }

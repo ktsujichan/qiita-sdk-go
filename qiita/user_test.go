@@ -7,9 +7,8 @@ import (
 	"testing"
 )
 
-func TestListStockers(t *testing.T) {
-	// 200
-	func() {
+func TestClient_ListStockers(t *testing.T) {
+	t.Run("200", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
 			http.ServeFile(w, r, "testdata/list_stockers.json")
@@ -20,10 +19,9 @@ func TestListStockers(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "testdata/list_stockers.json")
@@ -34,12 +32,11 @@ func TestListStockers(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestListUsers(t *testing.T) {
-	// 200
-	func() {
+func TestClient_ListUsers(t *testing.T) {
+	t.Run("200", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
 			http.ServeFile(w, r, "testdata/list_users.json")
@@ -50,10 +47,9 @@ func TestListUsers(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "testdata/list_users.json")
@@ -64,12 +60,11 @@ func TestListUsers(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestGetUser(t *testing.T) {
-	// 200
-	func() {
+func TestClient_GetUser(t *testing.T) {
+	t.Run("200", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
 			http.ServeFile(w, r, "testdata/get_user.json")
@@ -80,10 +75,9 @@ func TestGetUser(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "testdata/get_user.json")
@@ -94,12 +88,11 @@ func TestGetUser(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestListFollowees(t *testing.T) {
-	// 200
-	func() {
+func TestClient_ListFollowees(t *testing.T) {
+	t.Run("200", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
 			http.ServeFile(w, r, "testdata/list_followees.json")
@@ -110,10 +103,9 @@ func TestListFollowees(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "testdata/list_followees.json")
@@ -124,12 +116,11 @@ func TestListFollowees(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestListFollowers(t *testing.T) {
-	// 200
-	func() {
+func TestClient_ListFollowers(t *testing.T) {
+	t.Run("200", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
 			http.ServeFile(w, r, "testdata/list_followers.json")
@@ -140,10 +131,9 @@ func TestListFollowers(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "testdata/list_followers.json")
@@ -154,12 +144,11 @@ func TestListFollowers(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestUnfollowUser(t *testing.T) {
-	// 204
-	func() {
+func TestClient_UnfollowUser(t *testing.T) {
+	t.Run("204", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusNoContent)
 			http.ServeFile(w, r, "")
@@ -170,10 +159,9 @@ func TestUnfollowUser(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "")
@@ -184,12 +172,11 @@ func TestUnfollowUser(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestEnsureFollowingUser(t *testing.T) {
-	// 204
-	func() {
+func TestClient_EnsureFollowingUser(t *testing.T) {
+	t.Run("204", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusNoContent)
 			http.ServeFile(w, r, "")
@@ -200,10 +187,9 @@ func TestEnsureFollowingUser(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "")
@@ -214,12 +200,11 @@ func TestEnsureFollowingUser(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestFollowUser(t *testing.T) {
-	// 204
-	func() {
+func TestClient_FollowUser(t *testing.T) {
+	t.Run("204", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusNoContent)
 			http.ServeFile(w, r, "")
@@ -230,10 +215,9 @@ func TestFollowUser(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "")
@@ -244,5 +228,5 @@ func TestFollowUser(t *testing.T) {
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
