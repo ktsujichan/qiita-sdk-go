@@ -43,8 +43,8 @@ func (c *Client) AddItemTagging(ctx context.Context, itemID string, tagging Tagg
 
 	DELETE /api/v2/items/:item_id/taggings/:tagging_id
 */
-func (c *Client) DeleteItemTagging(ctx context.Context, itemId, taggingID string) error {
-	p := fmt.Sprintf("/api/v2/items/%s/taggings/%s", itemId, taggingID)
+func (c *Client) DeleteItemTagging(ctx context.Context, itemID, taggingID string) error {
+	p := fmt.Sprintf("/api/v2/items/%s/taggings/%s", itemID, taggingID)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
