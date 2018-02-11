@@ -29,7 +29,7 @@ func (c *Client) AddCommentReaction(ctx context.Context, commentID string, react
 	if err != nil {
 		return err
 	}
-	p := fmt.Sprintf("/api/v2/comments/%s/reactions", commentID)
+	p := fmt.Sprintf("comments/%s/reactions", commentID)
 	res, err := c.post(ctx, p, bytes.NewBuffer(b))
 	if err != nil {
 		return err
@@ -50,7 +50,7 @@ func (c *Client) AddItemReaction(ctx context.Context, itemID string, reaction Re
 	if err != nil {
 		return err
 	}
-	p := fmt.Sprintf("/api/v2/items/%s/reactions", itemID)
+	p := fmt.Sprintf("items/%s/reactions", itemID)
 	res, err := c.post(ctx, p, bytes.NewBuffer(b))
 	if err != nil {
 		return err
@@ -71,7 +71,7 @@ func (c *Client) AddProjectReaction(ctx context.Context, projectID uint, reactio
 	if err != nil {
 		return err
 	}
-	p := fmt.Sprintf("/api/v2/projects/%d/reactions", projectID)
+	p := fmt.Sprintf("projects/%d/reactions", projectID)
 	res, err := c.post(ctx, p, bytes.NewBuffer(b))
 	if err != nil {
 		return err
@@ -88,7 +88,7 @@ func (c *Client) AddProjectReaction(ctx context.Context, projectID uint, reactio
 	DELETE /api/v2/comments/:comment_id/reactions/:reaction_name
 */
 func (c *Client) DeleteCommentReaction(ctx context.Context, commentID, reactionName string) error {
-	p := fmt.Sprintf("/api/v2/comments/%s/reactions/%s", commentID, reactionName)
+	p := fmt.Sprintf("comments/%s/reactions/%s", commentID, reactionName)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
@@ -105,7 +105,7 @@ func (c *Client) DeleteCommentReaction(ctx context.Context, commentID, reactionN
 	DELETE /api/v2/items/:item_id/reactions/:reaction_name
 */
 func (c *Client) DeleteItemReaction(ctx context.Context, itemID, reactionName string) error {
-	p := fmt.Sprintf("/api/v2/items/%s/reactions/%s", itemID, reactionName)
+	p := fmt.Sprintf("items/%s/reactions/%s", itemID, reactionName)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
@@ -122,7 +122,7 @@ func (c *Client) DeleteItemReaction(ctx context.Context, itemID, reactionName st
 	DELETE /api/v2/projects/:project_id/reactions/:reaction_name
 */
 func (c *Client) DeleteProjectReaction(ctx context.Context, projectID uint, reactionName string) error {
-	p := fmt.Sprintf("/api/v2/projects/%d/reactions/%s", projectID, reactionName)
+	p := fmt.Sprintf("projects/%d/reactions/%s", projectID, reactionName)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
@@ -139,7 +139,7 @@ func (c *Client) DeleteProjectReaction(ctx context.Context, projectID uint, reac
 	GET /api/v2/comments/:comment_id/reactions
 */
 func (c *Client) ListCommentReactions(ctx context.Context, commentID string) (*Reactions, error) {
-	p := fmt.Sprintf("/api/v2/comments/%s/reactions", commentID)
+	p := fmt.Sprintf("comments/%s/reactions", commentID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return nil, err
@@ -160,7 +160,7 @@ func (c *Client) ListCommentReactions(ctx context.Context, commentID string) (*R
 	GET /api/v2/items/:item_id/reactions
 */
 func (c *Client) ListItemReactions(ctx context.Context, itemID string) (*Reactions, error) {
-	p := fmt.Sprintf("/api/v2/items/%s/reactions", itemID)
+	p := fmt.Sprintf("items/%s/reactions", itemID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return nil, err
@@ -181,7 +181,7 @@ func (c *Client) ListItemReactions(ctx context.Context, itemID string) (*Reactio
 	GET /api/v2/projects/:project_id/reactions
 */
 func (c *Client) ListProjectReactions(ctx context.Context, projectID string) (*Reactions, error) {
-	p := fmt.Sprintf("/api/v2/projects/%s/reactions", projectID)
+	p := fmt.Sprintf("projects/%s/reactions", projectID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return nil, err

@@ -27,7 +27,7 @@ type Templates []Template
 	GET /api/v2/templates
 */
 func (c *Client) ListTemplates(ctx context.Context, page, perPage uint) (*Templates, error) {
-	res, err := c.get(ctx, "/api/v2/templates", map[string]interface{}{
+	res, err := c.get(ctx, "templates", map[string]interface{}{
 		"page":     page,
 		"per_page": perPage,
 	})
@@ -50,7 +50,7 @@ func (c *Client) ListTemplates(ctx context.Context, page, perPage uint) (*Templa
 	DELETE /api/v2/templates/:template_id
 */
 func (c *Client) DeleteTemplate(ctx context.Context, templateID uint) error {
-	p := fmt.Sprintf("/api/v2/templates/%d", templateID)
+	p := fmt.Sprintf("templates/%d", templateID)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
@@ -67,7 +67,7 @@ func (c *Client) DeleteTemplate(ctx context.Context, templateID uint) error {
 	GET /api/v2/templates/:template_id
 */
 func (c *Client) GetTemplate(ctx context.Context, templateID uint) (*Template, error) {
-	p := fmt.Sprintf("/api/v2/templates/%d", templateID)
+	p := fmt.Sprintf("templates/%d", templateID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return nil, err
@@ -92,7 +92,7 @@ func (c *Client) CreateTemplate(ctx context.Context, template Template) error {
 	if err != nil {
 		return err
 	}
-	res, err := c.post(ctx, "/api/v2/templates", bytes.NewBuffer(b))
+	res, err := c.post(ctx, "templates", bytes.NewBuffer(b))
 	if err != nil {
 		return err
 	}
@@ -112,7 +112,7 @@ func (c *Client) UpdateTemplate(ctx context.Context, template Template) error {
 	if err != nil {
 		return err
 	}
-	p := fmt.Sprintf("/api/v2/templates/%d", template.ID)
+	p := fmt.Sprintf("templates/%d", template.ID)
 	res, err := c.patch(ctx, p, bytes.NewBuffer(b))
 	if err != nil {
 		return err

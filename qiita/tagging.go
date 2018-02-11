@@ -27,7 +27,7 @@ func (c *Client) AddItemTagging(ctx context.Context, itemID string, tagging Tagg
 	if err != nil {
 		return err
 	}
-	p := fmt.Sprintf("/api/v2/items/%s/taggings", itemID)
+	p := fmt.Sprintf("items/%s/taggings", itemID)
 	res, err := c.post(ctx, p, bytes.NewBuffer(b))
 	if err != nil {
 		return err
@@ -44,7 +44,7 @@ func (c *Client) AddItemTagging(ctx context.Context, itemID string, tagging Tagg
 	DELETE /api/v2/items/:item_id/taggings/:tagging_id
 */
 func (c *Client) DeleteItemTagging(ctx context.Context, itemID, taggingID string) error {
-	p := fmt.Sprintf("/api/v2/items/%s/taggings/%s", itemID, taggingID)
+	p := fmt.Sprintf("items/%s/taggings/%s", itemID, taggingID)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err

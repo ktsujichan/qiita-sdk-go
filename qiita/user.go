@@ -34,7 +34,7 @@ type Users []User
 	GET /api/v2/items/:item_id/stockers
 */
 func (c *Client) ListStockers(ctx context.Context, itemID string, page, perPage uint) (*Users, error) {
-	p := fmt.Sprintf("/api/v2/items/%s/stockers", itemID)
+	p := fmt.Sprintf("items/%s/stockers", itemID)
 	res, err := c.get(ctx, p, map[string]interface{}{
 		"page":     page,
 		"per_page": perPage,
@@ -58,7 +58,7 @@ func (c *Client) ListStockers(ctx context.Context, itemID string, page, perPage 
 	GET /api/v2/users
 */
 func (c *Client) ListUsers(ctx context.Context, page, perPage uint) (*Users, error) {
-	res, err := c.get(ctx, "/api/v2/users", map[string]interface{}{
+	res, err := c.get(ctx, "users", map[string]interface{}{
 		"page":     page,
 		"per_page": perPage,
 	})
@@ -81,7 +81,7 @@ func (c *Client) ListUsers(ctx context.Context, page, perPage uint) (*Users, err
 	GET /api/v2/users/:user_id
 */
 func (c *Client) GetUser(ctx context.Context, userID string) (*User, error) {
-	p := fmt.Sprintf("/api/v2/users/%s", userID)
+	p := fmt.Sprintf("users/%s", userID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return nil, err
@@ -102,7 +102,7 @@ func (c *Client) GetUser(ctx context.Context, userID string) (*User, error) {
 	GET /api/v2/users/:user_id/followees
 */
 func (c *Client) ListFollowees(ctx context.Context, userID string, page, perPage uint) (*Users, error) {
-	p := fmt.Sprintf("/api/v2/users/%s/followees", userID)
+	p := fmt.Sprintf("users/%s/followees", userID)
 	res, err := c.get(ctx, p, map[string]interface{}{
 		"page":     page,
 		"per_page": perPage,
@@ -126,7 +126,7 @@ func (c *Client) ListFollowees(ctx context.Context, userID string, page, perPage
 	GET /api/v2/users/:user_id/followers
 */
 func (c *Client) ListFollowers(ctx context.Context, userID string, page, perPage uint) (*Users, error) {
-	p := fmt.Sprintf("/api/v2/users/%s/followers", userID)
+	p := fmt.Sprintf("users/%s/followers", userID)
 	res, err := c.get(ctx, p, map[string]interface{}{
 		"page":     page,
 		"per_page": perPage,
@@ -150,7 +150,7 @@ func (c *Client) ListFollowers(ctx context.Context, userID string, page, perPage
 	DELETE /api/v2/users/:user_id/following
 */
 func (c *Client) UnfollowUser(ctx context.Context, userID string) error {
-	p := fmt.Sprintf("/api/v2/users/%s/following", userID)
+	p := fmt.Sprintf("users/%s/following", userID)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
@@ -167,7 +167,7 @@ func (c *Client) UnfollowUser(ctx context.Context, userID string) error {
 	GET /api/v2/users/:user_id/following
 */
 func (c *Client) EnsureFollowingUser(ctx context.Context, userID string) error {
-	p := fmt.Sprintf("/api/v2/users/%s/following", userID)
+	p := fmt.Sprintf("users/%s/following", userID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return err
@@ -184,7 +184,7 @@ func (c *Client) EnsureFollowingUser(ctx context.Context, userID string) error {
 	PUT /api/v2/users/:user_id/following
 */
 func (c *Client) FollowUser(ctx context.Context, userID string) error {
-	p := fmt.Sprintf("/api/v2/users/%s/following", userID)
+	p := fmt.Sprintf("users/%s/following", userID)
 	res, err := c.put(ctx, p, nil)
 	if err != nil {
 		return err

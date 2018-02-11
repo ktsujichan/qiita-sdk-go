@@ -27,7 +27,7 @@ type Comments []Comment
 	DELETE /api/v2/comments/:comment_id
 */
 func (c *Client) DeleteComment(ctx context.Context, commentID string) error {
-	p := fmt.Sprintf("/api/v2/comments/%s", commentID)
+	p := fmt.Sprintf("comments/%s", commentID)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
@@ -44,7 +44,7 @@ func (c *Client) DeleteComment(ctx context.Context, commentID string) error {
 	GET /api/v2/comments/:comment_id
 */
 func (c *Client) GetComment(ctx context.Context, commentID string) (*Comment, error) {
-	p := fmt.Sprintf("/api/v2/comments/%s", commentID)
+	p := fmt.Sprintf("comments/%s", commentID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return nil, err
@@ -69,7 +69,7 @@ func (c *Client) UpdateComment(ctx context.Context, comment Comment) error {
 	if err != nil {
 		return err
 	}
-	p := fmt.Sprintf("/api/v2/comments/%s", comment.ID)
+	p := fmt.Sprintf("comments/%s", comment.ID)
 	res, err := c.patch(ctx, p, bytes.NewBuffer(b))
 	if err != nil {
 		return err
@@ -86,7 +86,7 @@ func (c *Client) UpdateComment(ctx context.Context, comment Comment) error {
 	List comments on an item in newest order.
 */
 func (c *Client) ListComments(ctx context.Context, itemID string) (*Comments, error) {
-	p := fmt.Sprintf("/api/v2/items/%s/comments", itemID)
+	p := fmt.Sprintf("items/%s/comments", itemID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return nil, err
@@ -111,7 +111,7 @@ func (c *Client) PostComment(ctx context.Context, itemID string, comment Comment
 	if err != nil {
 		return err
 	}
-	p := fmt.Sprintf("/api/v2/items/%s/comments", itemID)
+	p := fmt.Sprintf("items/%s/comments", itemID)
 	res, err := c.post(ctx, p, bytes.NewBuffer(b))
 	if err != nil {
 		return err

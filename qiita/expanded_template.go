@@ -25,16 +25,16 @@ func (c *Client) CreateExpandedTemplate(ctx context.Context, template Template) 
 	if err != nil {
 		return nil, err
 	}
-	res, err := c.post(ctx, "/api/v2/expanded_templates", bytes.NewBuffer(b))
+	res, err := c.post(ctx, "expanded_templates", bytes.NewBuffer(b))
 	if err != nil {
 		return nil, err
 	}
 	if res.StatusCode != http.StatusCreated {
 		return nil, errors.New(res.Status)
 	}
-	var expanded_template ExpandedTemplate
-	if err := decodeBody(res, &expanded_template); err != nil {
+	var expandedTemplate ExpandedTemplate
+	if err := decodeBody(res, &expandedTemplate); err != nil {
 		return nil, err
 	}
-	return &expanded_template, nil
+	return &expandedTemplate, nil
 }

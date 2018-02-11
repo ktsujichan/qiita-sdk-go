@@ -21,7 +21,7 @@ type Teams []Team
 	GET /api/v2/teams
 */
 func (c *Client) ListTeams(ctx context.Context) (*Teams, error) {
-	res, err := c.get(ctx, "/api/v2/teams", nil)
+	res, err := c.get(ctx, "teams", nil)
 	if err != nil {
 		return nil, err
 	}

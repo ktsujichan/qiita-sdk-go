@@ -29,7 +29,7 @@ type Projects []Project
 	GET /api/v2/projects
 */
 func (c *Client) ListProjects(ctx context.Context, page, perPage uint) (*Projects, error) {
-	res, err := c.get(ctx, "/api/v2/projects", map[string]interface{}{
+	res, err := c.get(ctx, "projects", map[string]interface{}{
 		"page":     page,
 		"per_page": perPage,
 	})
@@ -56,7 +56,7 @@ func (c *Client) CreateProject(ctx context.Context, project Project) error {
 	if err != nil {
 		return err
 	}
-	res, err := c.post(ctx, "/api/v2/projects", bytes.NewBuffer(b))
+	res, err := c.post(ctx, "projects", bytes.NewBuffer(b))
 	if err != nil {
 		return err
 	}
@@ -72,7 +72,7 @@ func (c *Client) CreateProject(ctx context.Context, project Project) error {
 	DELETE /api/v2/projects/:project_id
 */
 func (c *Client) DeleteProject(ctx context.Context, projectID uint) error {
-	p := fmt.Sprintf("/api/v2/projects/%d", projectID)
+	p := fmt.Sprintf("projects/%d", projectID)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
@@ -89,7 +89,7 @@ func (c *Client) DeleteProject(ctx context.Context, projectID uint) error {
 	GET /api/v2/projects/:project_id
 */
 func (c *Client) GetProject(ctx context.Context, projectID string, page, perPage uint) (*Project, error) {
-	p := fmt.Sprintf("/api/v2/projects/%s", projectID)
+	p := fmt.Sprintf("projects/%s", projectID)
 	res, err := c.get(ctx, p, map[string]interface{}{
 		"page":     page,
 		"per_page": perPage,
@@ -117,7 +117,7 @@ func (c *Client) UpdateProject(ctx context.Context, project Project) error {
 	if err != nil {
 		return err
 	}
-	p := fmt.Sprintf("/api/v2/projects/%d", project.ID)
+	p := fmt.Sprintf("projects/%d", project.ID)
 	res, err := c.patch(ctx, p, bytes.NewBuffer(b))
 	if err != nil {
 		return err

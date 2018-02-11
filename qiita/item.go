@@ -35,7 +35,7 @@ type Items []Item
 	GET /api/v2/authenticated_user/items
 */
 func (c *Client) ListAuthenticatedUserItems(ctx context.Context, page, perPage uint) (*Items, error) {
-	res, err := c.get(ctx, "/api/v2/authenticated_user/items", map[string]interface{}{
+	res, err := c.get(ctx, "authenticated_user/items", map[string]interface{}{
 		"page":     page,
 		"per_page": perPage,
 	})
@@ -58,7 +58,7 @@ func (c *Client) ListAuthenticatedUserItems(ctx context.Context, page, perPage u
 	GET /api/v2/items
 */
 func (c *Client) ListItems(ctx context.Context, page, perPage uint, query string) (*Items, error) {
-	res, err := c.get(ctx, "/api/v2/items", map[string]interface{}{
+	res, err := c.get(ctx, "items", map[string]interface{}{
 		"page":     page,
 		"per_page": perPage,
 		"query":    query,
@@ -86,7 +86,7 @@ func (c *Client) CreateItem(ctx context.Context, item Item) error {
 	if err != nil {
 		return err
 	}
-	res, err := c.post(ctx, "/api/v2/items", bytes.NewBuffer(b))
+	res, err := c.post(ctx, "items", bytes.NewBuffer(b))
 	if err != nil {
 		return err
 	}
@@ -102,7 +102,7 @@ func (c *Client) CreateItem(ctx context.Context, item Item) error {
 	DELETE /api/v2/items/:item_id
 */
 func (c *Client) DeleteItem(ctx context.Context, itemID string) error {
-	p := fmt.Sprintf("/api/v2/items/%s", itemID)
+	p := fmt.Sprintf("items/%s", itemID)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
@@ -119,7 +119,7 @@ func (c *Client) DeleteItem(ctx context.Context, itemID string) error {
 	GET /api/v2/items/:item_id
 */
 func (c *Client) GetItem(ctx context.Context, itemID string) (*Item, error) {
-	p := fmt.Sprintf("/api/v2/items/%s", itemID)
+	p := fmt.Sprintf("items/%s", itemID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return nil, err
@@ -144,7 +144,7 @@ func (c *Client) UpdateItem(ctx context.Context, item Item) error {
 	if err != nil {
 		return err
 	}
-	p := fmt.Sprintf("/api/v2/items/%s", item.ID)
+	p := fmt.Sprintf("items/%s", item.ID)
 	res, err := c.patch(ctx, p, bytes.NewBuffer(b))
 	if err != nil {
 		return err
@@ -161,7 +161,7 @@ func (c *Client) UpdateItem(ctx context.Context, item Item) error {
 	DELETE /api/v2/items/:item_id/like
 */
 func (c *Client) UnlikeItem(ctx context.Context, itemID string) error {
-	p := fmt.Sprintf("/api/v2/items/%s/like", itemID)
+	p := fmt.Sprintf("items/%s/like", itemID)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
@@ -178,7 +178,7 @@ func (c *Client) UnlikeItem(ctx context.Context, itemID string) error {
 	PUT /api/v2/items/:item_id/like
 */
 func (c *Client) LikeItem(ctx context.Context, itemID string) error {
-	p := fmt.Sprintf("/api/v2/items/%s/like", itemID)
+	p := fmt.Sprintf("items/%s/like", itemID)
 	res, err := c.put(ctx, p, nil)
 	if err != nil {
 		return err
@@ -195,7 +195,7 @@ func (c *Client) LikeItem(ctx context.Context, itemID string) error {
 	PUT /api/v2/items/:item_id/stock
 */
 func (c *Client) StockItem(ctx context.Context, itemID string) error {
-	p := fmt.Sprintf("/api/v2/items/%s/stock", itemID)
+	p := fmt.Sprintf("items/%s/stock", itemID)
 	res, err := c.put(ctx, p, nil)
 	if err != nil {
 		return err
@@ -212,7 +212,7 @@ func (c *Client) StockItem(ctx context.Context, itemID string) error {
 	DELETE /api/v2/items/:item_id/stock
 */
 func (c *Client) UnstockItem(ctx context.Context, itemID string) error {
-	p := fmt.Sprintf("/api/v2/items/%s/stock", itemID)
+	p := fmt.Sprintf("items/%s/stock", itemID)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
@@ -229,7 +229,7 @@ func (c *Client) UnstockItem(ctx context.Context, itemID string) error {
 	GET /api/v2/items/:item_id/stock
 */
 func (c *Client) EnsureItemStock(ctx context.Context, itemID string) error {
-	p := fmt.Sprintf("/api/v2/items/%s/stock", itemID)
+	p := fmt.Sprintf("items/%s/stock", itemID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return err
@@ -246,7 +246,7 @@ func (c *Client) EnsureItemStock(ctx context.Context, itemID string) error {
 	GET /api/v2/items/:item_id/like
 */
 func (c *Client) EnsureItemLike(ctx context.Context, itemID string) error {
-	p := fmt.Sprintf("/api/v2/items/%s/like", itemID)
+	p := fmt.Sprintf("items/%s/like", itemID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return err
@@ -263,7 +263,7 @@ func (c *Client) EnsureItemLike(ctx context.Context, itemID string) error {
 	GET /api/v2/tags/:tag_id/items
 */
 func (c *Client) ListTaggedItems(ctx context.Context, tagID string, page, perPage uint) (*Items, error) {
-	p := fmt.Sprintf("/api/v2/tags/%s/items", tagID)
+	p := fmt.Sprintf("tags/%s/items", tagID)
 	res, err := c.get(ctx, p, map[string]interface{}{
 		"page":     page,
 		"per_page": perPage,
@@ -287,7 +287,7 @@ func (c *Client) ListTaggedItems(ctx context.Context, tagID string, page, perPag
 	GET /api/v2/users/:user_id/items
 */
 func (c *Client) ListUserItems(ctx context.Context, userID string, page, perPage uint) (*Items, error) {
-	p := fmt.Sprintf("/api/v2/users/%s/items", userID)
+	p := fmt.Sprintf("users/%s/items", userID)
 	res, err := c.get(ctx, p, map[string]interface{}{
 		"page":     page,
 		"per_page": perPage,
@@ -311,7 +311,7 @@ func (c *Client) ListUserItems(ctx context.Context, userID string, page, perPage
 	GET /api/v2/users/:user_id/stocks
 */
 func (c *Client) ListUserStocks(ctx context.Context, userID string, page, perPage uint) (*Items, error) {
-	p := fmt.Sprintf("/api/v2/users/%s/stocks", userID)
+	p := fmt.Sprintf("users/%s/stocks", userID)
 	res, err := c.get(ctx, p, map[string]interface{}{
 		"page":     page,
 		"per_page": perPage,

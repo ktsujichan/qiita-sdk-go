@@ -32,7 +32,7 @@ func (c *Client) CreateAccessToken(ctx context.Context, auth Auth) error {
 	if err != nil {
 		return err
 	}
-	res, err := c.post(ctx, "/api/v2/access_tokens", bytes.NewBuffer(b))
+	res, err := c.post(ctx, "access_tokens", bytes.NewBuffer(b))
 	if err != nil {
 		return err
 	}
@@ -48,7 +48,7 @@ func (c *Client) CreateAccessToken(ctx context.Context, auth Auth) error {
 	Deactivate an access token.
 */
 func (c *Client) DeleteAccessToken(ctx context.Context, accessToken string) error {
-	p := fmt.Sprintf("/api/v2/access_tokens/%s", accessToken)
+	p := fmt.Sprintf("access_tokens/%s", accessToken)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
