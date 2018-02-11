@@ -13,7 +13,7 @@ import (
 type Comment struct {
 	Body         string `json:"body"`
 	CreatedAt    string `json:"created_at,omitempty"`
-	Id           string `json:"id,omitempty"`
+	ID           string `json:"id,omitempty"`
 	RenderedBody string `json:"rendered_body,omitempty"`
 	UpdatedAt    string `json:"updated_at,omitempty"`
 	User         User   `json:"user,omitempty"`
@@ -26,8 +26,8 @@ type Comments []Comment
 
 	DELETE /api/v2/comments/:comment_id
 */
-func (c *Client) DeleteComment(ctx context.Context, commentId string) error {
-	p := fmt.Sprintf("/api/v2/comments/%s", commentId)
+func (c *Client) DeleteComment(ctx context.Context, commentID string) error {
+	p := fmt.Sprintf("comments/%s", commentID)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
@@ -43,8 +43,8 @@ func (c *Client) DeleteComment(ctx context.Context, commentId string) error {
 
 	GET /api/v2/comments/:comment_id
 */
-func (c *Client) GetComment(ctx context.Context, commentId string) (*Comment, error) {
-	p := fmt.Sprintf("/api/v2/comments/%s", commentId)
+func (c *Client) GetComment(ctx context.Context, commentID string) (*Comment, error) {
+	p := fmt.Sprintf("comments/%s", commentID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return nil, err
@@ -65,8 +65,11 @@ func (c *Client) GetComment(ctx context.Context, commentId string) (*Comment, er
 	PATCH /api/v2/comments/:comment_id
 */
 func (c *Client) UpdateComment(ctx context.Context, comment Comment) error {
-	b, _ := json.Marshal(comment)
-	p := fmt.Sprintf("/api/v2/comments/%s", comment.Id)
+	b, err := json.Marshal(comment)
+	if err != nil {
+		return err
+	}
+	p := fmt.Sprintf("comments/%s", comment.ID)
 	res, err := c.patch(ctx, p, bytes.NewBuffer(b))
 	if err != nil {
 		return err
@@ -82,8 +85,8 @@ func (c *Client) UpdateComment(ctx context.Context, comment Comment) error {
 
 	List comments on an item in newest order.
 */
-func (c *Client) ListComments(ctx context.Context, itemId string) (*Comments, error) {
-	p := fmt.Sprintf("/api/v2/items/%s/comments", itemId)
+func (c *Client) ListComments(ctx context.Context, itemID string) (*Comments, error) {
+	p := fmt.Sprintf("items/%s/comments", itemID)
 	res, err := c.get(ctx, p, nil)
 	if err != nil {
 		return nil, err
@@ -103,9 +106,12 @@ func (c *Client) ListComments(ctx context.Context, itemId string) (*Comments, er
 
 	POST /api/v2/items/:item_id/comments
 */
-func (c *Client) PostComment(ctx context.Context, itemId string, comment Comment) error {
-	b, _ := json.Marshal(comment)
-	p := fmt.Sprintf("/api/v2/items/%s/comments", itemId)
+func (c *Client) PostComment(ctx context.Context, itemID string, comment Comment) error {
+	b, err := json.Marshal(comment)
+	if err != nil {
+		return err
+	}
+	p := fmt.Sprintf("items/%s/comments", itemID)
 	res, err := c.post(ctx, p, bytes.NewBuffer(b))
 	if err != nil {
 		return err

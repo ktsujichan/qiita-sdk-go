@@ -7,32 +7,32 @@ import (
 	"testing"
 )
 
-func TestCreateExpandedTemplate(t *testing.T) {
-	// 201
-	func() {
+func TestClient_CreateExpandedTemplate(t *testing.T) {
+	t.Run("201", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusCreated)
 			http.ServeFile(w, r, "testdata/create_expanded_template.json")
 		}))
+		defer server.Close()
 		c, _ := mockClient(server)
 		ctx := context.TODO()
 		_, err := c.CreateExpandedTemplate(ctx, Template{})
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "testdata/create_expanded_template.json")
 		}))
+		defer server.Close()
 		c, _ := mockClient(server)
 		ctx := context.TODO()
 		_, err := c.CreateExpandedTemplate(ctx, Template{})
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }

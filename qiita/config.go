@@ -6,7 +6,7 @@ type Config struct {
 
 // APIEndpoint constants
 const (
-	APIEndpointBase = "http://qiita.com"
+	APIEndpointBase = "http://qiita.com/api/v2"
 )
 
 func NewConfig() *Config {

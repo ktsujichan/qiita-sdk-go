@@ -20,7 +20,7 @@ type AuthenticatedUser struct {
 	GET /api/v2/authenticated_user
 */
 func (c *Client) GetAuthenticatedUser(ctx context.Context) (*AuthenticatedUser, error) {
-	res, err := c.get(ctx, "/api/v2/authenticated_user", nil)
+	res, err := c.get(ctx, "authenticated_user", nil)
 	if err != nil {
 		return nil, err
 	}

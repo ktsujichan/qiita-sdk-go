@@ -7,152 +7,152 @@ import (
 	"testing"
 )
 
-func TestGetProjects(t *testing.T) {
-	// 200
-	func() {
+func TestClient_GetProjects(t *testing.T) {
+	t.Run("200", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
 			http.ServeFile(w, r, "testdata/get_projects.json")
 		}))
+		defer server.Close()
 		c, _ := mockClient(server)
 		ctx := context.TODO()
 		_, err := c.ListProjects(ctx, 1, 1)
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "testdata/get_projects.json")
 		}))
+		defer server.Close()
 		c, _ := mockClient(server)
 		ctx := context.TODO()
 		_, err := c.ListProjects(ctx, 1, 1)
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestCreateProject(t *testing.T) {
-	// 201
-	func() {
+func TestClient_CreateProject(t *testing.T) {
+	t.Run("201", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusCreated)
 			http.ServeFile(w, r, "")
 		}))
+		defer server.Close()
 		c, _ := mockClient(server)
 		ctx := context.TODO()
 		err := c.CreateProject(ctx, Project{})
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "")
 		}))
+		defer server.Close()
 		c, _ := mockClient(server)
 		ctx := context.TODO()
 		err := c.CreateProject(ctx, Project{})
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestDeleteProject(t *testing.T) {
-	// 204
-	func() {
+func TestClient_DeleteProject(t *testing.T) {
+	t.Run("204", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusNoContent)
 			http.ServeFile(w, r, "")
 		}))
+		defer server.Close()
 		c, _ := mockClient(server)
 		ctx := context.TODO()
 		err := c.DeleteProject(ctx, 1)
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "")
 		}))
+		defer server.Close()
 		c, _ := mockClient(server)
 		ctx := context.TODO()
 		err := c.DeleteProject(ctx, 1)
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestGetProject(t *testing.T) {
-	// 200
-	func() {
+func TestClient_GetProject(t *testing.T) {
+	t.Run("200", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
 			http.ServeFile(w, r, "testdata/get_project.json")
 		}))
+		defer server.Close()
 		c, _ := mockClient(server)
 		ctx := context.TODO()
 		_, err := c.GetProject(ctx, "", 1, 1)
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "testdata/get_project.json")
 		}))
+		defer server.Close()
 		c, _ := mockClient(server)
 		ctx := context.TODO()
 		_, err := c.GetProject(ctx, "", 1, 1)
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }
 
-func TestUpdateProject(t *testing.T) {
-	// 200
-	func() {
+func TestClient_UpdateProject(t *testing.T) {
+	t.Run("200", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusOK)
 			http.ServeFile(w, r, "")
 		}))
+		defer server.Close()
 		c, _ := mockClient(server)
 		ctx := context.TODO()
 		err := c.UpdateProject(ctx, Project{})
 		if err != nil {
 			t.Fatal(err)
 		}
-	}()
+	})
 
-	// 400
-	func() {
+	t.Run("400", func(t *testing.T) {
 		server := httptest.NewTLSServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			http.ServeFile(w, r, "")
 		}))
+		defer server.Close()
 		c, _ := mockClient(server)
 		ctx := context.TODO()
 		err := c.UpdateProject(ctx, Project{})
 		if err == nil {
 			t.Fail()
 		}
-	}()
+	})
 }

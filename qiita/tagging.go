@@ -22,9 +22,12 @@ type Taggings []Tagging
 
 	POST /api/v2/items/:item_id/taggings
 */
-func (c *Client) AddItemTagging(ctx context.Context, itemId string, tagging Tagging) error {
-	b, _ := json.Marshal(tagging)
-	p := fmt.Sprintf("/api/v2/items/%s/taggings", itemId)
+func (c *Client) AddItemTagging(ctx context.Context, itemID string, tagging Tagging) error {
+	b, err := json.Marshal(tagging)
+	if err != nil {
+		return err
+	}
+	p := fmt.Sprintf("items/%s/taggings", itemID)
 	res, err := c.post(ctx, p, bytes.NewBuffer(b))
 	if err != nil {
 		return err
@@ -40,8 +43,8 @@ func (c *Client) AddItemTagging(ctx context.Context, itemId string, tagging Tagg
 
 	DELETE /api/v2/items/:item_id/taggings/:tagging_id
 */
-func (c *Client) DeleteItemTagging(ctx context.Context, itemId, taggingId string) error {
-	p := fmt.Sprintf("/api/v2/items/%s/taggings/%s", itemId, taggingId)
+func (c *Client) DeleteItemTagging(ctx context.Context, itemID, taggingID string) error {
+	p := fmt.Sprintf("items/%s/taggings/%s", itemID, taggingID)
 	res, err := c.delete(ctx, p)
 	if err != nil {
 		return err
